@@ -25,6 +25,12 @@ THE SOFTWARE.
 #ifndef CXXOPTS_HPP_INCLUDED
 #define CXXOPTS_HPP_INCLUDED
 
+#ifdef CXXOPTS_MSCV2013_COMPATIBILITY
+#define constexpr const
+#define noexcept
+#define u8
+#endif
+
 #include <cstring>
 #include <cctype>
 #include <exception>
@@ -854,7 +860,7 @@ namespace cxxopts
     class standard_value : public abstract_value<T>
     {
       public:
-      using abstract_value<T>::abstract_value;
+      using abstract_value = abstract_value<T>::abstract_value;
 
       std::shared_ptr<Value>
       clone() const
@@ -940,7 +946,14 @@ namespace cxxopts
       m_value = rhs.m_value->clone();
     }
 
-    OptionDetails(OptionDetails&& rhs) = default;
+    OptionDetails(OptionDetails&& rhs)
+    : m_short(std::move(rhs.m_short))
+    , m_long(std::move(rhs.m_long))
+    , m_desc(std::move(rhs.m_desc))
+    , m_value(std::move(rhs.m_value))
+    , m_count(rhs.m_count)
+    {
+    }
 
     const String&
     description() const

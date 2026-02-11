@@ -64,8 +64,11 @@ int main(int argc, const char* argv[])
       ("c,compile", "compile")
       ("d,drop", "drop", cxxopts::value<std::vector<std::string>>());
 
+#ifdef CXXOPTS_MSCV2013_COMPATIBILITY
+    options.parse_positional(std::vector<std::string>{"input", "output", "positional"});
+#else
     options.parse_positional({"input", "output", "positional"});
-
+#endif
     auto result = options.parse(argc, argv);
 
     if (result.count("help"))

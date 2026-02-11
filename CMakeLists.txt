@@ -24,8 +24,15 @@ enable_testing()
 
 set(VERSION "1.2.0")
 
+option(MSVC2013_COMPATIBILITY "Set to ON to disable features not supported by MSVC 2013" ON)
 option(CXXOPTS_BUILD_EXAMPLES "Set to ON to build examples" ON)
 option(CXXOPTS_BUILD_TESTS "Set to ON to build tests" OFF)
+
+if (MSVC2013_COMPATIBILITY)
+  add_compile_definitions(_ALLOW_KEYWORD_MACROS)
+  add_compile_definitions(CXXOPTS_MSCV2013_COMPATIBILITY)
+endif (MSVC2013_COMPATIBILITY)
+
 
 # request c++11 without gnu extension for the whole project and enable more warnings
 if (CXXOPTS_CXX_STANDARD)
