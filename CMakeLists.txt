@@ -30,7 +30,7 @@ option(CXXOPTS_BUILD_TESTS "Set to ON to build tests" OFF)
 
 if (MSVC2013_COMPATIBILITY)
   add_compile_definitions(_ALLOW_KEYWORD_MACROS)
-  add_compile_definitions(CXXOPTS_MSCV2013_COMPATIBILITY)
+  add_compile_definitions(CXXOPTS_MSVC2013_COMPATIBILITY)
 endif (MSVC2013_COMPATIBILITY)
 
 

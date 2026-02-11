@@ -25,7 +25,7 @@ THE SOFTWARE.
 #ifndef CXXOPTS_HPP_INCLUDED
 #define CXXOPTS_HPP_INCLUDED
 
-#ifdef CXXOPTS_MSCV2013_COMPATIBILITY
+#ifdef CXXOPTS_MSVC2013_COMPATIBILITY
 #define constexpr const
 #define noexcept
 #define u8
